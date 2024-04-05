@@ -202,8 +202,12 @@ header {
   background: hsl(249, 32%, 17%);
 }
 footer {
-  text-align: center; /* Membuat teks menjadi rata tengah */
+  position: relative; /* membuat footer tetap di bagian bawah layar */
+  bottom: 20px; /* meletakkan footer di bagian bawah */
+  width: 100%; /* membuat footer menempati lebar penuh */
+  text-align: center; /* membuat teks menjadi rata tengah */
 }
+
 /* Breakpoints / Making responsive */
 @media (max-width: 1080px) {
   .nav {
