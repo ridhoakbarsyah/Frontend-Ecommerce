@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartIcon = document.querySelector("#cart-icon");
   const cart = document.querySelector(".cart");
   const closeCart = document.querySelector("#close-cart");
-  const addCartButtons = document.querySelectorAll(".add-cart");
   const buyButton = document.querySelector(".btn-buy");
 
   cartIcon.addEventListener("click", () => {
@@ -13,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
     cart.classList.remove("active");
   });
 
+  // Ambil semua tombol "Tambah ke Keranjang"
+  const addCartButtons = document.querySelectorAll(".add-cart");
+
   function ready() {
     addCartButtons.forEach((button) => {
       button.addEventListener("click", addCartClicked);
@@ -21,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function buyButtonClicked() {
-    alert("Your order has been placed successfully");
+    alert("Pesanan Anda telah berhasil ditempatkan");
     clearCart();
     updateTotal();
   }
@@ -42,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function addCartClicked(event) {
     const button = event.target;
-    const shopProduct = button.parentElement.parentElement;
+    const shopProduct = button.parentElement; // Mengambil elemen induk tombol "Tambah ke Keranjang"
     const title = shopProduct.querySelector(".product-title").innerText;
     const price = shopProduct.querySelector(".price").innerText;
     const productImg = shopProduct.querySelector(".product-img").src;
@@ -56,15 +58,15 @@ document.addEventListener("DOMContentLoaded", () => {
     cartShopBox.classList.add("cart-box");
 
     const cartBoxContent = `
-    <img src="${productImg}" alt="" class="cart-img" />
-    <div class="detail-box">
-      <div class="cart-product-title">${title}</div>
-      <div class="cart-price">${price}</div>
-      <label for="quantity">Quantity:</label>
-      <input type="number" value="1" class="cart-quantity" />
-    </div>
-    <!-- Remove Cart -->
-    <i class="bx bxs-trash-alt cart-remove"></i>`;
+      <img src="${productImg}" alt="" class="cart-img" />
+      <div class="detail-box">
+        <div class="cart-product-title">${title}</div>
+        <div class="cart-price">${price}</div>
+        <label for="quantity">Quantity:</label>
+        <input type="number" value="1" class="cart-quantity" />
+      </div>
+      <!-- Remove Cart -->
+      <i class="bx bxs-trash-alt cart-remove"></i>`;
 
     cartShopBox.innerHTML = cartBoxContent;
     cartItems.appendChild(cartShopBox);
@@ -86,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     total = Math.round(total * 100) / 100;
-    document.querySelector(".total-price").innerText = "Total Price: Rp" + total.toLocaleString("id-ID");
+    document.querySelector(".total-price").innerText = "Rp" + total.toLocaleString("id-ID");
   }
 
   function clearCart() {
